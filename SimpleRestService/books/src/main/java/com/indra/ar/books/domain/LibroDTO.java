@@ -1,8 +1,10 @@
 package com.indra.ar.books.domain;
 
-import java.util.Date;
-
 public interface LibroDTO extends GenericDTO{
+	
+	Long getId();
+	
+	void setId(Long id);
 
 	String getTitulo();
 	
@@ -12,9 +14,9 @@ public interface LibroDTO extends GenericDTO{
 	
 	void setAutor(String autor);
 	
-	Date getFechaPublicacion();
+	Long getFechaPublicacion();
 	
-	void setFechaPublicacion(Date fechaPublicacion);
+	void setFechaPublicacion(Long fechaPublicacion);
 	
 	String getIsbn();
 	

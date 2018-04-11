@@ -12,13 +12,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class LibroDTOTest {
 	
-	private final String titulo = "TITULO";
+	private static final String TITULO = "TITULO";
 	
-	private final String autor = "AUTOR";
+	private static final String AUTOR = "AUTOR";
 	
-	private final Date fechaPublicacion = new Date();
+	private static final Long FECHA_PUBLICACION = new Date().getTime();
 	
-	private final String isbn = "ISBN";
+	private static final String ISBN = "ISBN";
+	
+	private static final Long ID = 1L;
 
 	@Test
 	public void build() {
@@ -28,28 +30,30 @@ public class LibroDTOTest {
 	
 	@Test
 	public void initAttributes() {
-		LibroDTO libro = LibroDTOImp.builder().autor(autor).titulo(titulo).fechaPublicacion(fechaPublicacion).isbn(isbn).build();
+		LibroDTO libro = LibroDTOImp.builder().id(ID).autor(AUTOR).titulo(TITULO).fechaPublicacion(FECHA_PUBLICACION).isbn(ISBN).build();
 		
-		assertEquals(autor,libro.getAutor());
+		assertEquals(ID,libro.getId());
 		
-		assertEquals(titulo,libro.getTitulo());
+		assertEquals(AUTOR,libro.getAutor());
 		
-		assertEquals(fechaPublicacion.getTime(),libro.getFechaPublicacion().getTime());
+		assertEquals(TITULO,libro.getTitulo());
 		
-		assertEquals(isbn,libro.getIsbn());
+		assertEquals(FECHA_PUBLICACION,libro.getFechaPublicacion());
+		
+		assertEquals(ISBN,libro.getIsbn());
 		
 	}
 	
 	@Test
 	public void deepClone() {
 		
-		LibroDTO libro = LibroDTOImp.builder().autor(autor).titulo(titulo).fechaPublicacion(fechaPublicacion).isbn(isbn).build();
+		LibroDTO libro = LibroDTOImp.builder().id(ID).autor(AUTOR).titulo(TITULO).fechaPublicacion(FECHA_PUBLICACION).isbn(ISBN).build();
 	
 		LibroDTO libroCloned = libro.deepClone();
 		
 		libroCloned.setAutor("AUTOR2");
 		
-		assertEquals(autor,libro.getAutor());
+		assertEquals(AUTOR,libro.getAutor());
 		
 		assertEquals("AUTOR2",libroCloned.getAutor());
 	}

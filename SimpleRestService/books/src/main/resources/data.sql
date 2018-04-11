@@ -1,0 +1,1 @@
+insert into BOOKS (ID,TITULO,AUTOR,ISBN) values (10001,'Titulo 1','Autor 1','isb1');

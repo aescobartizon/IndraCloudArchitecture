@@ -26,10 +26,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	}
 
 	@ExceptionHandler(BookNotFoundException.class)
-	public final ResponseEntity<Object> handleUserNotFoundException(BookNotFoundException ex, WebRequest request) {
-
+	public final ResponseEntity<Object> handleBookNotFoundException(BookNotFoundException ex, WebRequest request) {
+		
 		ExceptionResponse exceptionResponse = ExceptionResponse.builder().timestamp(new Date()).message(ex.getMessage()).details(request.getDescription(false)).build();
 
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
 	}
+	
 }

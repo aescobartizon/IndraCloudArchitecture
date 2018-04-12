@@ -2,12 +2,12 @@ package com.indra.ar.books.services;
 
 public interface CrudService<T> {
 	
-	void insert(T element);
-	
-	void update(T element);
+	void save(T element);
 	
 	void delete(T element);
 	
-	T findByid();
+	T findByid(Long id);
+	
+	void deleteById(Long id); 
 
 }

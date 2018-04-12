@@ -1,0 +1,95 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Books Simple Rest Service",
+		"_postman_id": "2faf267f-cb27-f9c5-4052-e3e7a143d71f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8081/api/books/10001",
+			"request": {
+				"url": "http://localhost:8081/api/books/3",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "operacion para recuperar un libro por id interno"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un libro nuevo",
+			"request": {
+				"url": "localhost:8081/api/books",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 10001,\n    \"titulo\": \"Titulo 1\",\n    \"autor\": \"Autor 1\",\n    \"fechaPublicacion\": null,\n    \"isbn\": \"isb1\"\n}"
+				},
+				"description": "gfgfgf"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Book",
+			"request": {
+				"url": "localhost:8081/api/books",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 11,\n    \"titulo\": \"Titulo 7\",\n    \"autor\": \"Autor 2\",\n    \"fechaPublicacion\": null,\n    \"isbn\": \"isb1\"\n}"
+				},
+				"description": "actualizar libro"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete book",
+			"request": {
+				"url": "http://localhost:8081/api/books/3",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "delete libro by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Get books by titulo",
+			"request": {
+				"url": "http://localhost:8081/api/findbooks/Ti",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Find by criteria",
+			"request": {
+				"url": "http://localhost:8081/api/findbooksbycriteria",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

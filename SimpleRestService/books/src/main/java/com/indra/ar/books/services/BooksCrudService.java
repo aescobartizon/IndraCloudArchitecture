@@ -11,6 +11,7 @@ import com.indra.ar.books.domain.LibroDTO;
 import com.indra.ar.books.domain.SearchBookCriteria;
 import com.indra.ar.books.entities.Books;
 import com.indra.ar.books.exceptions.BookNotFoundException;
+import com.indra.ar.books.repositories.BooksDao;
 import com.indra.ar.books.repositories.BooksRepository;
 
 import lombok.Getter;
@@ -21,6 +22,10 @@ public class BooksCrudService extends AbstractService implements BooksService{
 	@Autowired
 	@Getter
 	BooksRepository booksRepository;
+	
+	@Autowired
+	@Getter
+	BooksDao booksDao;
 	
 	@Override
 	public LibroDTO save(LibroDTO element) {
@@ -55,6 +60,16 @@ public class BooksCrudService extends AbstractService implements BooksService{
 		return result;
 	}
 
+	@Override
+	public List<LibroDTO> findBookByCriteria(SearchBookCriteria searchBookCriteria){
+		
+		List<LibroDTO> result =new ArrayList<>();
+
+		getBooksDao().searchBooksByCriteria(searchBookCriteria).forEach(P -> result.add(getTransformDtoToEntity().BooksToLibroDto(P)));
+		
+		return result;
+	}
+	
 	@Override
 	public LibroDTO findByid(Long id) {
 		

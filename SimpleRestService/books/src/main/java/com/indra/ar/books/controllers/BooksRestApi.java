@@ -39,6 +39,8 @@ public class BooksRestApi extends AbstractController{
 	
 	private static final String FIND_BOOKS_END_POINT = "/findbooks";
 	
+	private static final String FIND_BOOKS_BY_CRITERIA_END_POINT = "/findbooksbycriteria";
+	
 	
 	@Autowired
 	@Getter
@@ -62,6 +64,20 @@ public class BooksRestApi extends AbstractController{
 		return resource;
 
 	}
+	
+	@GetMapping(path = FIND_BOOKS_BY_CRITERIA_END_POINT+ "/{isbn}" )
+    @ApiOperation(value = "Display books info filtered by critera", response = LibroDTO.class)
+	@ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "The resource not found")
+    }
+    )
+	public List<LibroDTO> getBooksByCriteria(@PathVariable String isbn) {
+		
+		return  getBookService().findBookByCriteria(SearchBookCriteria.builder().isbn(isbn).build());
+
+	}
+	
 	
 	@GetMapping(path = FIND_BOOKS_END_POINT + "/{titulo}")
     @ApiOperation(value = "Display books info filtered by title", response = LibroDTO.class)

@@ -9,4 +9,6 @@ public interface BooksService extends CrudService<LibroDTO>{
 
 	
 	List<LibroDTO> findBookByTitulo(SearchBookCriteria searchBookCriteria);
+	
+	List<LibroDTO> findBookByCriteria(SearchBookCriteria searchBookCriteria);
 }

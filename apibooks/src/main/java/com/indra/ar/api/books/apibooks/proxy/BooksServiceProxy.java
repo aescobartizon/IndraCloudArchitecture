@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.indra.ar.api.books.apibooks.domain.LibroDTOImp;
 
-@FeignClient(name="books-server",url="localhost:8081",decode404 = true)
+
+@FeignClient(name="books-service",url="${books.externalServer.url}")
 public interface BooksServiceProxy {
 
 	@GetMapping(value="/api/books/{id}")

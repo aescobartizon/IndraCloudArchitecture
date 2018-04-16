@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.indra.ar.api.books.apibooks.domain.LibroDTO;
-import com.indra.ar.api.books.apibooks.exceptions.BookNotFoundException;
 import com.indra.ar.api.books.apibooks.proxy.BooksServiceProxy;
 
 import io.swagger.annotations.ApiOperation;
@@ -37,10 +36,6 @@ public class ApiBooksApp extends AbstractController implements ApiBooks{
 	public LibroDTO getBook(@PathVariable Long id) {
 	
 		LibroDTO result =  getBooksServiceProxy().getBook(id);
-		
-		if(result.getId()==null) {
-			throw new BookNotFoundException("Book Not Found");
-		}
 
 		return result;
 

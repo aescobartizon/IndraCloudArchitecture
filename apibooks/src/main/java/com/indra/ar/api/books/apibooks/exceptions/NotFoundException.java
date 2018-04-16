@@ -1,10 +1,10 @@
 package com.indra.ar.api.books.apibooks.exceptions;
 
-public class BookNotFoundException extends RuntimeException{
+public class NotFoundException extends RuntimeException{
 
 	private static final long serialVersionUID = -8482739001310523692L;
 
-	public BookNotFoundException(String message) {
+	public NotFoundException(String message) {
 		super(message);
 	}
 }

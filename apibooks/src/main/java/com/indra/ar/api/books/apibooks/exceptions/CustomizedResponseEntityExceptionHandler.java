@@ -22,12 +22,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@ExceptionHandler(BookNotFoundException.class)
-	public final ResponseEntity<Object> handleBookNotFoundException(BookNotFoundException ex, WebRequest request) {
+	@ExceptionHandler(NotFoundException.class)
+	public final ResponseEntity<Object> handleBookNotFoundException(NotFoundException ex, WebRequest request) {
 		
 		ExceptionResponse exceptionResponse = ExceptionResponse.builder().timestamp(new Date()).message(ex.getMessage()).details(request.getDescription(false)).build();
 
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
 	}
-	
 }

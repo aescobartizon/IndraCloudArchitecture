@@ -9,11 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class ExceptionResponse {
+public class ExceptionResponse{
 
+	
 	private Date timestamp;
 	
 	private String message;
-	
+
 	private String details;
 }

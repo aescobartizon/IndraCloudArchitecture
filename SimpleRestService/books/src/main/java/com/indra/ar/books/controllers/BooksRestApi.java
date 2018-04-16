@@ -1,14 +1,12 @@
 package com.indra.ar.books.controllers;
 
 
-import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.indra.ar.books.domain.LibroDTO;
 import com.indra.ar.books.domain.LibroDTOImp;
@@ -94,29 +91,22 @@ public class BooksRestApi extends AbstractController{
 	
 	@PostMapping(path = BOOKS_END_POINT)
 	@ApiOperation(value = "Add book to stock", response = LibroDTO.class)
-	public ResponseEntity<LibroDTO> createUser(@Valid @RequestBody LibroDTOImp libro) {
+	public LibroDTO createBook(@Valid @RequestBody LibroDTOImp libro) {
 		
-		LibroDTO book = getBookService().save(libro);
-
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(book.getId()).toUri();
-
-		return ResponseEntity.created(location).body(book);
+		return  getBookService().save(libro);
 	}
 	
 	@PutMapping(path = BOOKS_END_POINT)
 	@ApiOperation(value = "update book info", response = LibroDTO.class)
-	public ResponseEntity<Object> updateUser(@Valid @RequestBody LibroDTOImp libro) {
+	public LibroDTO updateBook(@Valid @RequestBody LibroDTOImp libro) {
 
-		LibroDTO book = getBookService().update(libro);
-
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(book.getId()).toUri();
-
-		return ResponseEntity.created(location).body(book);
+		return getBookService().update(libro);
+		
 	}
 	
 	@DeleteMapping(path = BOOKS_END_POINT + "/{id}")
 	@ApiOperation(value = "delete book from stock", response = LibroDTO.class)
-	public void deleteUserJPA(@PathVariable Long id) {
+	public void deleteBook(@PathVariable Long id) {
 		
 		getBookService().deleteById(id);
 		

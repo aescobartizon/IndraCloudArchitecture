@@ -23,7 +23,6 @@ public class CustomFeignErrorDecoder implements ErrorDecoder {
 
     private ObjectMapper mapper = new ObjectMapper();
     
-    private final String OBJECT_NOT_FOUND = "Not founded : ";
     
     @Override
     public Exception decode(String methodKey, Response response) {
@@ -55,7 +54,7 @@ public class CustomFeignErrorDecoder implements ErrorDecoder {
 		if (status == HttpStatus.FORBIDDEN || status == HttpStatus.UNAUTHORIZED) {
 			return new RestClientException("");
 		} else if (status.is4xxClientError()) {
-			return new NotFoundException(OBJECT_NOT_FOUND+message);
+			return new NotFoundException(message);
 		} else {
 			return new RestClientException("");
 		} 

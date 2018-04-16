@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.indra.ar.api.books.apibooks.domain.LibroDTO;
+import com.indra.ar.api.books.apibooks.exceptions.BookNotFoundException;
 import com.indra.ar.api.books.apibooks.proxy.BooksServiceProxy;
 
 import io.swagger.annotations.ApiOperation;
@@ -34,21 +35,14 @@ public class ApiBooksApp extends AbstractController implements ApiBooks{
     }
     )
 	public LibroDTO getBook(@PathVariable Long id) {
-		
-//		Map<String, Long> uriVariables = new HashMap<>();
-//		uriVariables.put("id", id);
-//		ResponseEntity<LibroDTOImp> currencyConversion = new RestTemplate().getForEntity(
-//				"http://localhost:8081/api/books/{id}", LibroDTOImp.class, uriVariables);
-//		LibroDTO response = currencyConversion.getBody();
-//		
-//		return response;
-			
+	
 		LibroDTO result =  getBooksServiceProxy().getBook(id);
-		return result;
 		
-		//Resource<LibroDTO> resource = new Resource<>(result);
+		if(result.getId()==null) {
+			throw new BookNotFoundException("Book Not Found");
+		}
 
-		//return resource;
+		return result;
 
 	}
 }

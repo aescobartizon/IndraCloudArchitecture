@@ -30,6 +30,6 @@ public interface BooksServiceProxy {
 	@PutMapping(path = "/api/books/")
 	LibroDTOImp updateBook(@Valid @RequestBody LibroDTOImp libro);
 	
-	@DeleteMapping(path = "/api/books//{id}")
+	@DeleteMapping(path = "/api/books/{id}")
 	public void deleteBook(@PathVariable("id") Long id);
 }

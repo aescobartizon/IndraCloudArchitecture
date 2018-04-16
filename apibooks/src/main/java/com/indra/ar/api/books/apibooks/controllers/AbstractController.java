@@ -3,6 +3,7 @@ package com.indra.ar.api.books.apibooks.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
 
 import lombok.Getter;
@@ -15,6 +16,10 @@ public class AbstractController {
 	@Setter
 	private Environment enviroment;
 	
+	@Autowired
+	@Getter
+	@Setter
+	private MessageSource messageSource;
 	
 	@Getter
 	private static Logger log = LoggerFactory.getLogger(AbstractController.class);

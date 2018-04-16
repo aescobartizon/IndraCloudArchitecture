@@ -2,6 +2,7 @@ package com.indra.ar.api.books.apibooks.controllers;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -40,6 +42,11 @@ public class ApiBooksApp extends AbstractController implements ApiBooks{
 	@Getter
 	BooksServiceProxy booksServiceProxy;
 	
+	@RequestMapping("/msg")
+	public String msg(@RequestHeader("Accept-Language") Locale locale) {
+		return getMessageSource().getMessage("field2", null, locale);
+	}
+	
 	@GetMapping(path = BOOKS_END_POINT + "/{id}")
     @ApiOperation(value = "Display book info to non-admin user", response = LibroDTO.class)
 	@ApiResponses(value = {
@@ -48,7 +55,7 @@ public class ApiBooksApp extends AbstractController implements ApiBooks{
     }
     )
 	public LibroDTOImp getBook(@PathVariable Long id) {
-	
+
 		return  getBooksServiceProxy().getBook(id);
 
 	}

@@ -11,25 +11,25 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import com.indra.ar.api.books.apibooks.exceptions.CustomFeignErrorDecoder;
 
 @Configuration
-public class ApiConfig {
+public class ApiConfig{
 
 	@Bean
-	public CustomFeignErrorDecoder customErrorDecoder(){
+	public CustomFeignErrorDecoder customErrorDecoder() {
 		return new CustomFeignErrorDecoder();
 	}
-	
+
 	@Bean
 	public LocaleResolver localeResolver() {
-	 SessionLocaleResolver slr = new SessionLocaleResolver();
-	 slr.setDefaultLocale(Locale.ENGLISH);
-	 return slr;
+		SessionLocaleResolver slr = new SessionLocaleResolver();
+		slr.setDefaultLocale(Locale.ENGLISH);
+		return slr;
 	}
-	 
+
 	@Bean
 	public ResourceBundleMessageSource messageSource() {
-	 ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-	 source.setBasenames("i18n/messages");
-	 source.setUseCodeAsDefaultMessage(true);
-	 return source;
+		ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+		source.setBasenames("i18n/messages");
+		source.setUseCodeAsDefaultMessage(true);
+		return source;
 	}
 }

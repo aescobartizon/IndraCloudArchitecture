@@ -48,15 +48,12 @@ public class ApiBooksApp extends AbstractController implements ApiBooks{
 	}
 	
 	@GetMapping(path = BOOKS_END_POINT + "/{id}")
-    @ApiOperation(value = "Display book info to non-admin user", response = LibroDTO.class)
-	@ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK"),
-            @ApiResponse(code = 404, message = "The resource not found")
-    }
-    )
+	@ApiOperation(value = "Display book info to non-admin user", response = LibroDTO.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 404, message = "The resource not found") })
 	public LibroDTOImp getBook(@PathVariable Long id) {
-
-		return  getBooksServiceProxy().getBook(id);
+		
+		return getBooksServiceProxy().getBook(id);
 
 	}
 	

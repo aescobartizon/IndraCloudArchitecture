@@ -14,13 +14,15 @@ public class SecurityUtils {
 	public static final String TOKEN_PREFIX = "Bearer ";
 	public static final String HEADER_STRING = "Authorization";
 	public static final String SIGN_UP_URL = "/users/sign-up";
+	public static final String CLAIM_KEY = "claim_key";
 
 	private SecurityUtils() {
 		throw new IllegalStateException("Utility class");
 	}
 
 	public static String generateToken(TokenInfo tokenInfo) {
-		return Jwts.builder().claim("name",tokenInfo.getUserName()).claim("scope",tokenInfo.getRole()).setSubject(tokenInfo.getUserName()).setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+		
+		return Jwts.builder().claim(CLAIM_KEY,tokenInfo).setSubject(tokenInfo.getUserName()).setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 				.signWith(SignatureAlgorithm.HS512, SECRET.getBytes()).compact();
 	}
 }

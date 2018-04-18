@@ -40,6 +40,6 @@ public class UserController {
 
 		user.setPassword(getBCryptPasswordEncoder().encode(user.getPassword()));
 		getApplicationUserRepository().save(user);
-		res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + SecurityUtils.generateToken(TokenInfo.builder().userName(user.getUsername()).role(user.getRole()).build()));
+		res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + SecurityUtils.generateToken(TokenInfo.builder().name(user.getUsername()).userName(user.getUsername()).role(user.getRole()).build()));
 	}
 }

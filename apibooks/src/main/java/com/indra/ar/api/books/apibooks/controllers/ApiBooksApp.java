@@ -53,6 +53,8 @@ public class ApiBooksApp extends AbstractController implements ApiBooks{
 			@ApiResponse(code = 404, message = "The resource not found") })
 	public LibroDTOImp getBook(@PathVariable Long id) {
 		
+		getApplicationUserLogged();
+
 		return getBooksServiceProxy().getBook(id);
 
 	}

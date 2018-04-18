@@ -1,12 +1,14 @@
 package com.indra.ar.api.books.apibooks.conf;
 
 
+import static com.indra.ar.api.books.apibooks.conf.SecurityUtils.CLAIM_KEY;
 import static com.indra.ar.api.books.apibooks.conf.SecurityUtils.HEADER_STRING;
 import static com.indra.ar.api.books.apibooks.conf.SecurityUtils.SECRET;
 import static com.indra.ar.api.books.apibooks.conf.SecurityUtils.TOKEN_PREFIX;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,10 +20,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import com.indra.ar.api.books.apibooks.conf.SecurityUtils.TOKEN_INFO;
+import com.indra.ar.api.books.apibooks.domain.ApplicationUser;
+
 import io.jsonwebtoken.Jwts;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
-
+	
 	public JWTAuthorizationFilter(AuthenticationManager authManager) {
 		super(authManager);
 	}
@@ -46,12 +51,19 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 	private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
 		String token = request.getHeader(HEADER_STRING);
 		if (token != null) {
-			
+
 			String user = Jwts.parser().setSigningKey(SECRET.getBytes()).parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
 					.getBody().getSubject();
 
+			@SuppressWarnings("rawtypes")
+			LinkedHashMap authentaticationUser = (LinkedHashMap)(Jwts.parser()
+					.setSigningKey(SECRET.getBytes()).parseClaimsJws(token.replace(TOKEN_PREFIX, "")).getBody()
+					.get(CLAIM_KEY));
+			
+			ApplicationUser applicationUser = ApplicationUser.builder().username((String)authentaticationUser.get(TOKEN_INFO.USER_NAME.getField())).name((String)authentaticationUser.get(TOKEN_INFO.NAME.getField())).role((String)authentaticationUser.get(TOKEN_INFO.ROLE.getField())).build();
+
 			if (user != null) {
-				return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+				return new UsernamePasswordAuthenticationToken(applicationUser, null, new ArrayList<>());
 			}
 			return null;
 		}

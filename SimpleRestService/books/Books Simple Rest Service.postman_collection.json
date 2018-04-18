@@ -90,6 +90,105 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "api rest",
+			"request": {
+				"url": "http://localhost:8090/apibooks/books/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "api rest find book by title ",
+			"request": {
+				"url": "http://localhost:8090/apibooks/findbooks/Tit",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "apir rest create book",
+			"request": {
+				"url": "localhost:8090/apibooks/books",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"autor\": \"Autor 1\",\n    \"fechaPublicacion\": null,\n    \"isbn\": \"isb1\",\n    \"titulo\": \"zz\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "apir rest updatebook",
+			"request": {
+				"url": "localhost:8090/apibooks/books",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"autor\": \"Autor 1\",\n    \"fechaPublicacion\": null,\n    \"isbn\": \"isb1\",\n    \"titulo\": \"zz\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "api Rest internacionalizacion",
+			"request": {
+				"url": "http://localhost:8090/apibooks/msg",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Auth2 sign up",
+			"request": {
+				"url": "http://localhost:8070/users/sign-up",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"mockUserName@gmail.com\",\"password\":\"password\"}"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }

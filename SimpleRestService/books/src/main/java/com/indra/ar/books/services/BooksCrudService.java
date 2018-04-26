@@ -30,7 +30,7 @@ public class BooksCrudService extends AbstractService implements BooksService{
 	@Override
 	public LibroDTO save(LibroDTO element) {
 		
-		return getTransformDtoToEntity().BooksToLibroDto(getBooksRepository().save(getTransformDtoToEntity().LibroDtoToBooks(element)));	
+		return getTransformDtoToEntity().booksToLibroDto(getBooksRepository().save(getTransformDtoToEntity().libroDtoToBooks(element)));	
 	}
 	
 	@Override
@@ -38,7 +38,7 @@ public class BooksCrudService extends AbstractService implements BooksService{
 		
 		getBooksRepository().findById(element.getId()).orElseThrow(() -> new BookNotFoundException("Book :"+element.getId().toString()+" Not found"));
 		
-		return getTransformDtoToEntity().BooksToLibroDto(getBooksRepository().save(getTransformDtoToEntity().LibroDtoToBooks(element)));	
+		return getTransformDtoToEntity().booksToLibroDto(getBooksRepository().save(getTransformDtoToEntity().libroDtoToBooks(element)));	
 	}
 	
 	@Override
@@ -55,7 +55,7 @@ public class BooksCrudService extends AbstractService implements BooksService{
 		
 		List<LibroDTO> result =new ArrayList<>();
 		
-		getBooksRepository().findBooksBytitulo(searchBookCriteria.getTitulo()).forEach(P -> result.add(getTransformDtoToEntity().BooksToLibroDto(P)));
+		getBooksRepository().findBooksBytitulo(searchBookCriteria.getTitulo()).forEach(P -> result.add(getTransformDtoToEntity().booksToLibroDto(P)));
 		
 		return result;
 	}
@@ -65,7 +65,7 @@ public class BooksCrudService extends AbstractService implements BooksService{
 		
 		List<LibroDTO> result =new ArrayList<>();
 
-		getBooksDao().searchBooksByCriteria(searchBookCriteria).forEach(P -> result.add(getTransformDtoToEntity().BooksToLibroDto(P)));
+		getBooksDao().searchBooksByCriteria(searchBookCriteria).forEach(P -> result.add(getTransformDtoToEntity().booksToLibroDto(P)));
 		
 		return result;
 	}
@@ -81,7 +81,7 @@ public class BooksCrudService extends AbstractService implements BooksService{
 		
 		if(result.isPresent()) {
 			getLog().info("---BUSINESS LAYER --TRANSFORM ENTITY To DTO --Transformacion de la entidad de base de datos a Dto y retorno de Bussines a Controller");
-			return getTransformDtoToEntity().BooksToLibroDto(result.get());
+			return getTransformDtoToEntity().booksToLibroDto(result.get());
 		}else {
 			throw new BookNotFoundException("Book id "+id.toString());
 		}

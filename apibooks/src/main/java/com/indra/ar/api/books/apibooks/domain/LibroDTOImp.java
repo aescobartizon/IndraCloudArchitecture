@@ -19,12 +19,13 @@ public class LibroDTOImp extends AbstractDTO implements LibroDTO {
 	
 	public LibroDTOImp() {
 		super();
+		this.titulo = "";
 	}
 	
 	public LibroDTOImp(Long id, String titulo, String autor, Long fechaPublicacion, String isbn) {
 		super();
 		this.id = id;
-		this.titulo = titulo;
+		this.titulo = titulo != null ? titulo : "";
 		this.autor = autor;
 		this.fechaPublicacion = fechaPublicacion;
 		this.isbn = isbn;

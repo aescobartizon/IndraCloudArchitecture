@@ -9,14 +9,14 @@ import com.indra.ar.books.entities.Books;
 @Service
 public class TransformDtoToEntity {
 
-	public Books LibroDtoToBooks(LibroDTO libro) {
+	public Books libroDtoToBooks(LibroDTO libro) {
 		
 		return Books.builder().autor(libro.getAutor()).titulo(libro.getTitulo())
 				.fechaPublicacion(libro.getFechaPublicacion()).isbn(libro.getIsbn())
 				.id(libro.getId()).build();
 	}
 	
-	public LibroDTO BooksToLibroDto(Books book) {
+	public LibroDTO booksToLibroDto(Books book) {
 		
 		return LibroDTOImp.builder().autor(book.getAutor()).titulo(book.getTitulo())
 				.fechaPublicacion(book.getFechaPublicacion()).isbn(book.getIsbn())

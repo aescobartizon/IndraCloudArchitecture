@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.indra.ar.books.domain.Email;
 import com.indra.ar.books.domain.LibroDTO;
 import com.indra.ar.books.domain.SearchBookCriteria;
 import com.indra.ar.books.entities.Books;
@@ -30,7 +31,11 @@ public class BooksCrudService extends AbstractService implements BooksService{
 	@Override
 	public LibroDTO save(LibroDTO element) {
 		
-		return getTransformDtoToEntity().booksToLibroDto(getBooksRepository().save(getTransformDtoToEntity().libroDtoToBooks(element)));	
+		LibroDTO libroAdded = getTransformDtoToEntity().booksToLibroDto(getBooksRepository().save(getTransformDtoToEntity().libroDtoToBooks(element)));
+		
+		getJmsTemplate().convertAndSend("MailBox.queue",Email.builder().body(element.getTitulo()).to(element.getAutor()).build());
+		
+		return libroAdded;
 	}
 	
 	@Override

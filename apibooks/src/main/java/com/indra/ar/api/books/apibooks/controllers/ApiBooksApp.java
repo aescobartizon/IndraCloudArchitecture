@@ -37,10 +37,12 @@ public class ApiBooksApp extends AbstractController implements ApiBooks{
 	
 	private static final String FIND_BOOKS_END_POINT = "/findbooks";
 	
+	
 	@Autowired
 	@Setter
 	@Getter
 	BooksServiceProxy booksServiceProxy;
+	
 	
 	@RequestMapping("/msg")
 	public String msg(@RequestHeader("Accept-Language") Locale locale) {
@@ -103,4 +105,5 @@ public class ApiBooksApp extends AbstractController implements ApiBooks{
 		return ResponseEntity.accepted().body(id);
 		
 	}
+
 }

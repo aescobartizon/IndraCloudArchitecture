@@ -1,13 +1,8 @@
-package com.indra.ar.sales.conf;
+package com.indra.ar.stock.conf;
 
-import javax.jms.ConnectionFactory;
-
-import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
-import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
-import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
@@ -16,23 +11,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-@Configuration
 @EnableJms
-public class JmsBrokerConfig {
+@Configuration
+public class JmsListenerConfig{
 
-	public static final String SALES_TOPIC = "VirtualTopic.SalesTopic";
-	
-	@Bean
-	public JmsListenerContainerFactory<?> myFactory(ConnectionFactory connectionFactory,
-			DefaultJmsListenerContainerFactoryConfigurer configurer) {
-		
-		DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-		factory.setPubSubDomain(Boolean.TRUE);
-		factory.setConcurrency("1-1");
-		configurer.configure(factory, connectionFactory);
-		return factory;
-	}
-	
 	@Bean
 	public MessageConverter messageConverter() {
 		MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
@@ -49,5 +31,5 @@ public class JmsBrokerConfig {
 		mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 		return mapper;
 	}
-	
+
 }

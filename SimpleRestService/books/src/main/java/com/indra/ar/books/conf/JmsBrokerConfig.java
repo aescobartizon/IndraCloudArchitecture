@@ -32,6 +32,7 @@ public class JmsBrokerConfig {
 		return factory;
 	}
 	
+	
 	@Bean
 	public MessageConverter messageConverter() {
 		MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();

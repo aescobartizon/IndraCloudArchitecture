@@ -7,6 +7,7 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 import com.indra.ar.books.domain.Email;
@@ -15,10 +16,12 @@ import com.indra.ar.books.domain.Email;
 public class JmsEmailListener {
 
 	@JmsListener(destination = "MailBox.queue")
-	public void receiveMessage(@Payload Email email,@Headers MessageHeaders headers,
-            Message message,
-            Session session) {
+	@SendTo("outbound.queue")
+	public String receiveMessage(@Payload Email email, @Headers MessageHeaders headers, Message message,
+			Session session) {
 
 		System.out.println("Received <" + email + ">");
+
+		return "Mail OK";
 	}
 }

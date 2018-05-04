@@ -23,8 +23,6 @@ public class JmsBrokerConfig {
 
 	public static final String SALES_TOPIC = "VirtualTopic.SalesTopic";
 	
-	//private static final String DEFAULT_BROKER_URL = "tcp://localhost:61616";
-	
 	@Bean
 	public JmsListenerContainerFactory<?> myFactory(ConnectionFactory connectionFactory,
 			DefaultJmsListenerContainerFactoryConfigurer configurer) {
@@ -37,38 +35,6 @@ public class JmsBrokerConfig {
 		return factory;
 	}
 
-//	@Bean
-//	public ConnectionFactory connectionFactory() {
-//		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-//		connectionFactory.setBrokerURL(DEFAULT_BROKER_URL);
-//		
-//		RedeliveryPolicy redeliveryPolicy = new RedeliveryPolicy();
-//		redeliveryPolicy.setInitialRedeliveryDelay(0);
-//		redeliveryPolicy.setRedeliveryDelay(10000);
-//		redeliveryPolicy.setUseExponentialBackOff(true);
-//		redeliveryPolicy.setMaximumRedeliveries(3);
-//		connectionFactory.setRedeliveryPolicy(redeliveryPolicy);
-//
-//		return connectionFactory;
-//	}
-//
-//	@Bean
-//	public ConnectionFactory cachingConnectionFactory() {
-//		CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
-//		connectionFactory.setTargetConnectionFactory(connectionFactory());
-//		connectionFactory.setSessionCacheSize(10);
-//	
-//		return connectionFactory;
-//	}
-//	
-//    @Bean
-//    public JmsTemplate jmsTemplate(){
-//        JmsTemplate template = new JmsTemplate();
-//        template.setDeliveryPersistent(Boolean.FALSE);
-//        template.setConnectionFactory(connectionFactory());
-//        return template;
-//    }
-//	     
 	  
 	@Bean
 	public MessageConverter messageConverter() {

@@ -14,10 +14,6 @@ public class AbstractService {
 	private static Logger log = LoggerFactory.getLogger(AbstractService.class);
 	
 	@Autowired
-	JmsTemplate jmsTemplate; 
-	
-	public JmsTemplate getJmsTemplate() {
-		//jmsTemplate.setPubSubDomain(Boolean.TRUE);
-		return jmsTemplate;
-	}
+	@Getter
+	JmsTemplate jmsTemplate;
 }

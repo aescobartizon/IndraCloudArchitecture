@@ -22,7 +22,7 @@ public class SalesService extends AbstractService implements Sales{
 	@Override
 	public void saleBook(SaleBook saleBook) {
 		getLog().info(new Date().toGMTString());
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 500; i++) {
 			getJmsTemplate().convertAndSend(new ActiveMQTopic(JmsBrokerConfig.SALES_TOPIC), saleBook);
 		}
 		getLog().info(new Date().toGMTString());

@@ -22,7 +22,7 @@ public class JmsSaleListener {
 	@Getter
 	private static Logger log = LoggerFactory.getLogger(JmsSaleListener.class);
 	
-	@JmsListener(destination = "VirtualTopic.SalesTopic")
+	@JmsListener(destination = "Consumer.Delivery.VirtualTopic.SalesTopic")
 	public void saleBook(@Payload SaleBook saleBook, @Headers MessageHeaders headers, Message message,
 			Session session) {
 

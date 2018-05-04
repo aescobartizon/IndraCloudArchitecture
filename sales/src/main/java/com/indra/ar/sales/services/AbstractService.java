@@ -17,7 +17,7 @@ public class AbstractService {
 	JmsTemplate jmsTemplate; 
 	
 	public JmsTemplate getJmsTemplate() {
-		jmsTemplate.setPubSubDomain(Boolean.TRUE);
+		//jmsTemplate.setPubSubDomain(Boolean.TRUE);
 		return jmsTemplate;
 	}
 }

@@ -27,7 +27,7 @@ public class JmsBrokerConfig {
 			DefaultJmsListenerContainerFactoryConfigurer configurer) {
 		
 		DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-		factory.setPubSubDomain(Boolean.TRUE);
+		//factory.setPubSubDomain(Boolean.TRUE);
 		factory.setConcurrency("1-1");
 		configurer.configure(factory, connectionFactory);
 		return factory;
@@ -49,5 +49,4 @@ public class JmsBrokerConfig {
 		mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 		return mapper;
 	}
-	
 }

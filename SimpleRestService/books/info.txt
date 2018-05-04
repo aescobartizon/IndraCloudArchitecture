@@ -10,3 +10,36 @@ BOOKS REST SERVICE.
  
  	http://localhost:8081/swagger-ui.html#/
  	http://localhost:8081/v2/api-docs
+ 	
+ 	
+ 	
+Comunicacion con ActiveMQ
+
+--añadir a activemq.xml ->  <broker> 
+
+		<destinationInterceptors>
+			<virtualDestinationInterceptor>
+				<virtualDestinations>
+					<virtualTopic name="VirtualTopic.>" prefix="Consumer.*." selectorAware="false"/>
+				</virtualDestinations>
+			</virtualDestinationInterceptor>
+		</destinationInterceptors>
+		
+-- Configuracion con Broker sin persinstencia en  Sales JmsBrokerConfig.java y Virtual Topic (500 msg 4 s)
+
+		Sales ----> ----------------
+		            - Stock 1      -
+		            - Stock 2      -
+		            ----------------
+		            
+		      ----> ----------------
+		            - Delivery 1   -
+		            - Delivery 2   -
+		            ----------------    
+-- Configuracion con Broker con persisntencia y Colas con CallBack Books-> (500 msg 30s)
+
+        Book -----> -----------------
+                    - Notification 1-
+                    - Notification 2-
+             <----- -----------------
+

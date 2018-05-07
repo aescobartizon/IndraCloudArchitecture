@@ -26,7 +26,7 @@ public class JmsSaleListener {
 	public void saleBook(@Payload SaleBook saleBook, @Headers MessageHeaders headers, Message message,
 			Session session) {
 
-		getLog().info(("Libro vendido <" + saleBook + ">"));
+		//getLog().info(("Libro vendido <" + saleBook + ">"));
 
 	}
 }

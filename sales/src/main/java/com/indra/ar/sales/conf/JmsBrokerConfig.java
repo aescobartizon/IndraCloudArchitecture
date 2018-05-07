@@ -34,7 +34,7 @@ public class JmsBrokerConfig {
 		configurer.configure(factory, connectionFactory);
 		return factory;
 	}
-
+ 
 	  
 	@Bean
 	public MessageConverter messageConverter() {
